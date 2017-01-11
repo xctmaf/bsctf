@@ -4,3 +4,6 @@
 4. Аттрибут [Authorize] на экшене а не контроллере
 5. Physical Path Disclosure (в качестве флага имя одной из папок)
 6. OnlyFrontSide validation
+
+Идеи:
+особенно секция про инстаграмм https://bo0om.ru/xss-every-day
