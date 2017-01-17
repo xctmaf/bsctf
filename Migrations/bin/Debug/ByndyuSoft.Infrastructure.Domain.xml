@@ -1,0 +1,352 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ByndyuSoft.Infrastructure.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.Commands.ICommandBuilder">
+            <summary>
+                Интерфейс для построителя команд.
+                Позволяет создать и выполнить команду с определенным контекстом.
+            </summary>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.Commands.ICommandBuilder.Execute``1(``0)">
+            <summary>
+                Создает команду с определенным контекстом и выполняет её.
+            </summary>
+            <typeparam name="TCommandContext">Тип контекста команды.</typeparam>
+            <param name="commandContext">Контекст команды.</param>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.Commands.CommandBuilder">
+            <summary>
+                Стандартная реализация интерефейса <see cref="T:ByndyuSoft.Infrastructure.Domain.Commands.ICommandBuilder"/>
+            </summary>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.Commands.CommandBuilder.#ctor(ByndyuSoft.Infrastructure.Domain.Commands.ICommandFactory)">
+            <summary>
+                Конструктор.
+            </summary>
+            <param name="commandFactory"></param>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.Commands.ICommand`1">
+            <summary>
+                Интерфейс для команды.
+            </summary>
+            <typeparam name="TCommandContext">Контекст команды</typeparam>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.Commands.ICommand`1.Execute(`0)">
+            <summary>
+                Выполняет действия команды.
+            </summary>
+            <param name="commandContext">Контекст команды</param>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.Commands.ICommandContext">
+            <summary>
+                Маркерный интерфейс для контекста команды.
+            </summary>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.Commands.ICommandFactory">
+            <summary>
+                Интерфейс фабрики, создающей команду для определенного контекста.
+            </summary>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.Commands.ICommandFactory.Create``1">
+            <summary>
+                Создает команду по контексту команды.
+            </summary>
+            <typeparam name="TCommandContext">Контекст команды</typeparam>
+            <returns>
+                Экземпляр <see cref="T:ByndyuSoft.Infrastructure.Domain.Commands.ICommand`1"/> c заданным контекстом. /&gt;
+            </returns>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.Comparers.EntityEqualityComparer`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.Criteria.AllEntities">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.ICriterion">
+            <summary>
+                Критерии запроса
+            </summary>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.Criteria.FindById">
+            <summary>
+                Критерий для поиска по идентификатору
+            </summary>
+        </member>
+        <member name="P:ByndyuSoft.Infrastructure.Domain.Criteria.FindById.Id">
+            <summary>
+                Идентификатор доменной сущности
+            </summary>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.Extensions.QueryBuilderExtensions">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.Extensions.QueryBuilderExtensions.Count``1(ByndyuSoft.Infrastructure.Domain.IQueryBuilder,``0)">
+            <summary>
+            </summary>
+            <param name="queryBuilder"></param>
+            <param name="criterion"></param>
+            <typeparam name="TCriterion"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.Extensions.QueryForExtensions">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.Extensions.QueryForExtensions.ById``1(ByndyuSoft.Infrastructure.Domain.IQueryFor{``0},System.Int32)">
+            <summary>
+                Добавить критерий для поиска доменной сущности по идентификатору
+            </summary>
+            <param name="queryFor"></param>
+            <param name="id">Идентификатор доменной сущности</param>
+            <returns>Возвращает найденную доменную сущность, либо null</returns>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.Extensions.QueryForExtensions.All``1(ByndyuSoft.Infrastructure.Domain.IQueryFor{``0})">
+            <summary>
+                Добавить критерий для поиска всех объектов данного типа
+            </summary>
+            <returns>Возвращает найденную доменную сущность, либо null</returns>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.IEntityComponent">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.IQueryBuilder">
+            <summary>
+                Интерфейс для построителя запросов
+            </summary>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.IQueryBuilder.For``1">
+            <summary>
+                Начать строить запрос для результата
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.IQueryFactory">
+            <summary>
+                Фабрика объектов запросов
+            </summary>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.IQueryFactory.Create``2">
+            <summary>
+                Создать запрос, возвращающий необходимые результаты с определенными критериями
+            </summary>
+            <typeparam name="TCriterion"> </typeparam>
+            <typeparam name="TResult"> </typeparam>
+            <returns> </returns>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.IQuery`2">
+            <summary>
+                Интерфейс для объектов запросов к базе
+            </summary>
+            <typeparam name="TCriterion"> </typeparam>
+            <typeparam name="TResult"> </typeparam>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.IQuery`2.Ask(`0)">
+            <summary>
+                Получить результат из базы
+            </summary>
+            <param name="criterion"> </param>
+            <returns> </returns>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.Comparers.EntityEqualityComparer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.IEntity">
+            <summary>
+                Интерфейс сущности доменной модели
+            </summary>
+        </member>
+        <member name="P:ByndyuSoft.Infrastructure.Domain.IEntity.Id">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.ILinqProvider">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.ILinqProvider.Query``1">
+            <summary>
+                Query object for concrete <see cref="T:ByndyuSoft.Infrastructure.Domain.IEntity"/>
+            </summary>
+            <typeparam name="TEntity">
+                <see cref="T:ByndyuSoft.Infrastructure.Domain.IEntity"/>
+            </typeparam>
+            <returns>
+                <see cref="T:System.Linq.IQueryable`1"/> object for type of TEntity
+            </returns>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.IQueryFor`1">
+            <summary>
+                Интерфейс для задания критериев запроса
+            </summary>
+            <typeparam name="T">Тип возращаемого запросом значения</typeparam>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.IQueryFor`1.With``1(``0)">
+            <summary>
+                Добавить критерии запроса
+            </summary>
+            <param name="criterion"></param>
+            <typeparam name="TCriterion"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.IRepository`1">
+            <summary>
+                Интерфейс репозитория
+            </summary>
+            <typeparam name="TEntity"> Тип сущности доменной модели </typeparam>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.IRepository`1.All">
+            <summary>
+                Получить все сущности
+            </summary>
+            <returns> Список сущностей </returns>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.IRepository`1.Get(System.Int32)">
+            <summary>
+                Получить сущность по идентификатору. В ряде случаев использование Load более предпочтительно.
+                Подробнее http://ayende.com/Blog/archive/2009/04/30/nhibernate-ndash-the-difference-between-get-load-and-querying-by.aspx
+            </summary>
+            <param name="id"> Идектификатор сущности </param>
+            <returns> Сущность с указанным Id, если существует. Иначе - null. </returns>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.IRepository`1.Add(`0)">
+            <summary>
+                Сохранить сущность
+            </summary>
+            <param name="entity"> Сущность </param>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.IRepository`1.Remove(`0)">
+            <summary>
+                Удалить сущность
+            </summary>
+            <param name="entity"> Сущность </param>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.QueryFor`1">
+            <summary>
+                Стандартная реализация <see cref="T:ByndyuSoft.Infrastructure.Domain.IQueryFor`1"/>
+            </summary>
+            <typeparam name="TResult">Результат возвращаемый запросом</typeparam>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.QueryFor`1.#ctor(ByndyuSoft.Infrastructure.Domain.IQueryFactory)">
+            <summary>
+                ctor
+            </summary>
+            <param name="factory"></param>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.Sorting.SortOrder">
+            <summary>
+                Sort order enumeration
+            </summary>
+        </member>
+        <member name="F:ByndyuSoft.Infrastructure.Domain.Sorting.SortOrder.Asc">
+            <summary>
+                Ascending order of sort
+            </summary>
+        </member>
+        <member name="F:ByndyuSoft.Infrastructure.Domain.Sorting.SortOrder.Desc">
+            <summary>
+                Descending order of sort
+            </summary>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.Sorting.SortOrderExtensions">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.Sorting.SortOrderExtensions.Invert(ByndyuSoft.Infrastructure.Domain.Sorting.SortOrder)">
+            <summary>
+            </summary>
+            <param name="sortOrder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.Sorting.SortOrderExtensions.Invert(System.Nullable{ByndyuSoft.Infrastructure.Domain.Sorting.SortOrder},ByndyuSoft.Infrastructure.Domain.Sorting.SortOrder)">
+            <summary>
+            </summary>
+            <param name="sortOrder"></param>
+            <param name="default"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.TreeNode`1">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.TreeNode`1.AddChild(`0)">
+            <summary>
+            </summary>
+            <param name="child"></param>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.TreeNode`1.ClearParent">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:ByndyuSoft.Infrastructure.Domain.TreeNode`1.Parent">
+            <summary>
+                Parent node for current tree node
+            </summary>
+        </member>
+        <member name="P:ByndyuSoft.Infrastructure.Domain.TreeNode`1.Children">
+            <summary>
+                List of children nodes for current tree node
+            </summary>
+        </member>
+        <member name="P:ByndyuSoft.Infrastructure.Domain.TreeNode`1.Ancestors">
+            <summary>
+                List of all nodes which lies above current tree node (parent, grandparents, etc.)
+            </summary>
+        </member>
+        <member name="P:ByndyuSoft.Infrastructure.Domain.TreeNode`1.Descendants">
+            <summary>
+                List of all nodes which lies under current tree node (children, grandchildren, etc.)
+            </summary>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.IUnitOfWork">
+            <summary>
+                Единица работы
+            </summary>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.IUnitOfWork.Commit">
+            <summary>
+                Сохранить ВСЕ изменения в базу
+            </summary>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.IUnitOfWork.Save``1(``0)">
+            <summary>
+                Пометить сущность для сохранения в базу
+            </summary>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.IUnitOfWork.Delete``1(``0)">
+            <summary>
+                Пометить сущность для удаления из базы
+            </summary>
+        </member>
+        <member name="T:ByndyuSoft.Infrastructure.Domain.IUnitOfWorkFactory">
+            <summary>
+                Фабрика uow
+            </summary>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.IUnitOfWorkFactory.Create(System.Data.IsolationLevel)">
+            <summary>
+                Создает uow, если у uow не будет вызван метод <see cref="M:ByndyuSoft.Infrastructure.Domain.IUnitOfWork.Commit"/>, то автоматически будет выполнен rollback
+            </summary>
+            <param name="isolationLevel"> </param>
+            <returns> </returns>
+        </member>
+        <member name="M:ByndyuSoft.Infrastructure.Domain.IUnitOfWorkFactory.Create">
+            <summary>
+                Создает uow, если у uow не будет вызван метод <see cref="M:ByndyuSoft.Infrastructure.Domain.IUnitOfWork.Commit"/>, то автоматически будет выполнен rollback
+            </summary>
+            <returns> </returns>
+        </member>
+    </members>
+</doc>

@@ -212,7 +212,11 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Web.Application\Web.Application.csproj">
+    <ProjectReference Include="..\Migrations\Migrations.csproj">
+      <Project>{2236B75C-9EC7-4486-9FA3-DB271380DE10}</Project>
+      <Name>Migrations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Web.Application\Web.Application.csproj">
       <Project>{65755742-120A-4D3B-A600-99BE841E608E}</Project>
       <Name>Web.Application</Name>
     </ProjectReference>

@@ -5,22 +5,35 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "BSCTF\Web.csproj", "{0B959100-02A2-486A-AF6C-C3E5D3296AF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Application", "..\Web.Application\Web.Application.csproj", "{65755742-120A-4D3B-A600-99BE841E608E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Application", "Web.Application\Web.Application.csproj", "{65755742-120A-4D3B-A600-99BE841E608E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrations", "Migrations\Migrations.csproj", "{2236B75C-9EC7-4486-9FA3-DB271380DE10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		UAT|Any CPU = UAT|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0B959100-02A2-486A-AF6C-C3E5D3296AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0B959100-02A2-486A-AF6C-C3E5D3296AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B959100-02A2-486A-AF6C-C3E5D3296AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B959100-02A2-486A-AF6C-C3E5D3296AF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B959100-02A2-486A-AF6C-C3E5D3296AF5}.UAT|Any CPU.ActiveCfg = Release|Any CPU
+		{0B959100-02A2-486A-AF6C-C3E5D3296AF5}.UAT|Any CPU.Build.0 = Release|Any CPU
 		{65755742-120A-4D3B-A600-99BE841E608E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{65755742-120A-4D3B-A600-99BE841E608E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65755742-120A-4D3B-A600-99BE841E608E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65755742-120A-4D3B-A600-99BE841E608E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65755742-120A-4D3B-A600-99BE841E608E}.UAT|Any CPU.ActiveCfg = Release|Any CPU
+		{65755742-120A-4D3B-A600-99BE841E608E}.UAT|Any CPU.Build.0 = Release|Any CPU
+		{2236B75C-9EC7-4486-9FA3-DB271380DE10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2236B75C-9EC7-4486-9FA3-DB271380DE10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2236B75C-9EC7-4486-9FA3-DB271380DE10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2236B75C-9EC7-4486-9FA3-DB271380DE10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2236B75C-9EC7-4486-9FA3-DB271380DE10}.UAT|Any CPU.ActiveCfg = UAT|Any CPU
+		{2236B75C-9EC7-4486-9FA3-DB271380DE10}.UAT|Any CPU.Build.0 = UAT|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

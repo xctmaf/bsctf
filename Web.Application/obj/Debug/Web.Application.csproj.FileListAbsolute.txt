@@ -1,0 +1,11 @@
+E:\Projects\Web.Application\bin\Debug\Web.Application.dll
+E:\Projects\Web.Application\bin\Debug\Web.Application.pdb
+E:\Projects\Web.Application\bin\Debug\Newtonsoft.Json.dll
+E:\Projects\Web.Application\bin\Debug\System.Net.Http.Formatting.dll
+E:\Projects\Web.Application\bin\Debug\System.Web.Http.dll
+E:\Projects\Web.Application\bin\Debug\Newtonsoft.Json.xml
+E:\Projects\Web.Application\bin\Debug\System.Net.Http.Formatting.xml
+E:\Projects\Web.Application\bin\Debug\System.Web.Http.xml
+E:\Projects\Web.Application\obj\Debug\Web.Application.csprojResolveAssemblyReference.cache
+E:\Projects\Web.Application\obj\Debug\Web.Application.dll
+E:\Projects\Web.Application\obj\Debug\Web.Application.pdb

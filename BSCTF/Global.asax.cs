@@ -5,6 +5,7 @@
     using Castle.MicroKernel.Resolvers.SpecializedResolvers;
     using Castle.Windsor;
     using Castle.Windsor.Installer;
+    using Migrations;
 
     public class WebApiApplication : System.Web.HttpApplication
     {
@@ -13,7 +14,7 @@
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-
+            MigrationsRunner.Run();
             RegisterWindsor(GlobalConfiguration.Configuration);
         }
 
