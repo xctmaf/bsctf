@@ -1,4 +1,4 @@
-﻿namespace Api.IoC
+﻿namespace BSCTF.IoC
 {
     using System;
     using System.Collections.Generic;

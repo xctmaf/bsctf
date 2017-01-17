@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Application", "Web.Appl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrations", "Migrations\Migrations.csproj", "{2236B75C-9EC7-4486-9FA3-DB271380DE10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{F39FBC2B-D9AC-4C95-A10D-C890A48AE964}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.DataAccess", "Domain.DataAccess\Domain.DataAccess.csproj", "{61FA0E31-3398-4A3A-9BFB-300743FF4C5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +38,18 @@ Global
 		{2236B75C-9EC7-4486-9FA3-DB271380DE10}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2236B75C-9EC7-4486-9FA3-DB271380DE10}.UAT|Any CPU.ActiveCfg = UAT|Any CPU
 		{2236B75C-9EC7-4486-9FA3-DB271380DE10}.UAT|Any CPU.Build.0 = UAT|Any CPU
+		{F39FBC2B-D9AC-4C95-A10D-C890A48AE964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F39FBC2B-D9AC-4C95-A10D-C890A48AE964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F39FBC2B-D9AC-4C95-A10D-C890A48AE964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F39FBC2B-D9AC-4C95-A10D-C890A48AE964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F39FBC2B-D9AC-4C95-A10D-C890A48AE964}.UAT|Any CPU.ActiveCfg = Release|Any CPU
+		{F39FBC2B-D9AC-4C95-A10D-C890A48AE964}.UAT|Any CPU.Build.0 = Release|Any CPU
+		{61FA0E31-3398-4A3A-9BFB-300743FF4C5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61FA0E31-3398-4A3A-9BFB-300743FF4C5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61FA0E31-3398-4A3A-9BFB-300743FF4C5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61FA0E31-3398-4A3A-9BFB-300743FF4C5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61FA0E31-3398-4A3A-9BFB-300743FF4C5C}.UAT|Any CPU.ActiveCfg = Release|Any CPU
+		{61FA0E31-3398-4A3A-9BFB-300743FF4C5C}.UAT|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

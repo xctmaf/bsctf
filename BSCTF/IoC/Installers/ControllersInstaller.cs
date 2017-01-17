@@ -4,7 +4,7 @@
     using Castle.MicroKernel.Registration;
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
-    using Controllers.Temp;
+    using Controllers;
     using JetBrains.Annotations;
 
     [UsedImplicitly]
@@ -12,7 +12,7 @@
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Classes.FromAssemblyContaining<TempController>().BasedOn<ApiController>().Configure(x => x.LifestylePerWebRequest()));
+            container.Register(Classes.FromAssemblyContaining<UserController>().BasedOn<ApiController>().Configure(x => x.LifestylePerWebRequest()));
         }
     }
 }

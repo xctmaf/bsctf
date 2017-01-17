@@ -1,10 +1,10 @@
 ﻿namespace BSCTF
 {
     using System.Web.Http;
-    using Api.IoC;
     using Castle.MicroKernel.Resolvers.SpecializedResolvers;
     using Castle.Windsor;
     using Castle.Windsor.Installer;
+    using IoC;
     using Migrations;
 
     public class WebApiApplication : System.Web.HttpApplication

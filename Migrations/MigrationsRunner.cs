@@ -15,7 +15,7 @@
             var announcer = new TextWriterAnnouncer(s => migrationLog.Append(s));
             var runnerContext = new RunnerContext(announcer)
                                     {
-                                        Database = "postgres",
+                                        Database = "sqlserver",
                                         Connection = connectionString,
                                         Targets = new[] {typeof (MigrationsRunner).Assembly.FullName}
                                     };
