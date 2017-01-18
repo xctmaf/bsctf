@@ -66,6 +66,8 @@
     <Compile Include="User\Commands\RegisterNewUserCommand.cs" />
     <Compile Include="User\CommnadContexts\RegisterNewUserCommandContexts.cs" />
     <Compile Include="User\Queries\FindAllUsersQuery.cs" />
+    <Compile Include="User\Queries\FindUserByLoginQuery.cs" />
+    <Compile Include="User\QueryContexts\FindUserByLogin.cs" />
     <Compile Include="User\QueryObjects\InsertUser.cs" />
     <Compile Include="User\QueryObjects\SelectUser.cs" />
   </ItemGroup>
@@ -74,7 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="User\Criterions\" />
-    <Folder Include="User\QueryContexts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

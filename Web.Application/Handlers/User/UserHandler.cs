@@ -5,6 +5,7 @@
     using ByndyuSoft.Infrastructure.Domain.Commands;
     using ByndyuSoft.Infrastructure.Domain.Extensions;
     using Domain.DataAccess.User.CommnadContexts;
+    using Domain.DataAccess.User.QueryContexts;
     using Domain.Entities;
     using Domain.Exceptions;
     using Domain.Services;
@@ -45,6 +46,16 @@
             {
                 throw new DuplicateUserException(ex.Message);
             }
+        }
+
+        public UserModel Login(string login, string password)
+        {
+            var user = _queryBuilder.For<User>().With(new FindUserByLogin(login));
+
+            if (user == null || _passwordHasher.GetHashedPassword(password, user.Salt) != user.Password)
+                return null;
+            
+            return new UserModel {Login = user.Login, Username = user.Username};
         }
     }
 }

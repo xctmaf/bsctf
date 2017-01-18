@@ -66,6 +66,7 @@
     <Compile Include="Exceprtions\DuplicateUserException.cs" />
     <Compile Include="Handlers\User\IUserHandler.cs" />
     <Compile Include="Handlers\User\UserHandler.cs" />
+    <Compile Include="Models\User\Input\LoginUserModel.cs" />
     <Compile Include="Models\User\Input\RegisterUserModel.cs" />
     <Compile Include="Models\User\Output\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

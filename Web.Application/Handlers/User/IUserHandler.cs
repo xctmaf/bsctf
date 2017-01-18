@@ -6,5 +6,6 @@
     {
         UserModel[] GetInfo();
         void Register(string login, string password, string username);
+        UserModel Login(string login, string password);
     }
 }
