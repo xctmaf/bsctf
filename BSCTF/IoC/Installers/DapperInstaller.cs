@@ -8,6 +8,7 @@
     using Castle.MicroKernel.Resolvers.SpecializedResolvers;
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
+    using Domain.DataAccess.User.Commands;
     using Domain.DataAccess.User.Queries;
     using JetBrains.Annotations;
 
@@ -19,17 +20,17 @@
             container.AddFacility<TypedFactoryFacility>();
             container.Kernel.Resolver.AddSubResolver(new CollectionResolver(container.Kernel));
 
-//            var commands = Classes.FromAssemblyContaining<AddQuestionaryCommand>()
-//                                  .BasedOn(typeof(ICommand<>))
-//                                  .WithService.AllInterfaces()
-//                                  .Configure(x => x.LifestyleTransient());
+            var commands = Classes.FromAssemblyContaining<RegisterNewUserCommand>()
+                                  .BasedOn(typeof(ICommand<>))
+                                  .WithService.AllInterfaces()
+                                  .Configure(x => x.LifestyleTransient());
 
             var queries = Classes.FromAssemblyContaining<FindAllUsersQuery>()
                                 .BasedOn(typeof(IQuery<,>))
                                 .WithService.AllInterfaces()
                                 .LifestyleTransient();
 
-            container.Register(//commands,
+            container.Register(commands,
                                queries,
                                Component.For<IQueryBuilder>().AsFactory().LifestyleTransient(),
                                Component.For<IQueryFactory>().AsFactory().LifestyleTransient(),

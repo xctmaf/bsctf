@@ -60,9 +60,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryBase.cs" />
+    <Compile Include="User\Commands\RegisterNewUserCommand.cs" />
+    <Compile Include="User\CommnadContexts\RegisterNewUserCommandContexts.cs" />
     <Compile Include="User\Queries\FindAllUsersQuery.cs" />
+    <Compile Include="User\QueryObjects\InsertUser.cs" />
     <Compile Include="User\QueryObjects\SelectUser.cs" />
   </ItemGroup>
   <ItemGroup>

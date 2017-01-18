@@ -1,4 +1,4 @@
-﻿namespace Web.Application.Models.User
+﻿namespace Web.Application.Models.User.Output
 {
     public class UserModel
     {

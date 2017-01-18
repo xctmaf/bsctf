@@ -15,5 +15,19 @@ SELECT
 FROM
     Users");
         }
+
+        public static QueryObject ByLogin(string login)
+        {
+            return new QueryObject(@"
+SELECT
+    Login
+    , Password
+    , Username
+    , Id
+FROM
+    Users
+WHERE
+    Login = '" + login +"'");
+        }
     }
 }
