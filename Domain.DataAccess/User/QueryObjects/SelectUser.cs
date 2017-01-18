@@ -12,6 +12,7 @@ SELECT
     , Password
     , Username
     , Id
+    , Salt
 FROM
     Users");
         }
@@ -24,6 +25,7 @@ SELECT
     , Password
     , Username
     , Id
+    , Salt
 FROM
     Users
 WHERE

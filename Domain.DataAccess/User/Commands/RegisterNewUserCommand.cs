@@ -22,7 +22,7 @@
             if (existUser.Any())
                 throw new DuplicateEntityException();
 
-            Connection.Execute(InsertUser.New(context.Login, context.Password, context.Username));
+            Connection.Execute(InsertUser.New(context.Login, context.Password, context.Username, context.Salt));
         }
     }
 }

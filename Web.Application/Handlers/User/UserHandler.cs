@@ -7,6 +7,7 @@
     using Domain.DataAccess.User.CommnadContexts;
     using Domain.Entities;
     using Domain.Exceptions;
+    using Domain.Services;
     using Exceprtions;
     using JetBrains.Annotations;
     using Models.User.Output;
@@ -16,11 +17,15 @@
     {
         private readonly IQueryBuilder _queryBuilder;
         private readonly ICommandBuilder _commandBuilder;
+        private readonly IPasswordHasher _passwordHasher;
+        private readonly ISaltGenerator _saltGenerator;
 
-        public UserHandler(IQueryBuilder queryBuilder, ICommandBuilder commandBuilder)
+        public UserHandler(IQueryBuilder queryBuilder, ICommandBuilder commandBuilder, IPasswordHasher passwordHasher, ISaltGenerator saltGenerator)
         {
             _queryBuilder = queryBuilder;
             _commandBuilder = commandBuilder;
+            _passwordHasher = passwordHasher;
+            _saltGenerator = saltGenerator;
         }
 
         public UserModel[] GetInfo()
@@ -32,7 +37,9 @@
         {
             try
             {
-                _commandBuilder.Execute(new RegisterNewUserCommandContexts(login, password, username));
+                var salt = _saltGenerator.GetBase64Salt();
+                var hashedPassword = _passwordHasher.GetHashedPassword(password, salt);
+                _commandBuilder.Execute(new RegisterNewUserCommandContexts(login, hashedPassword, username, salt));
             }
             catch (DuplicateEntityException ex)
             {

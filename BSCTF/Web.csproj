@@ -193,6 +193,7 @@
     <Compile Include="IoC\Installers\ControllersInstaller.cs" />
     <Compile Include="IoC\Installers\DapperInstaller.cs" />
     <Compile Include="IoC\Installers\HandlerInstaller.cs" />
+    <Compile Include="IoC\Installers\ServiceInstaller.cs" />
     <Compile Include="IoC\WindsorDependencyResolver.cs" />
     <Compile Include="IoC\WindsorDependencyScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -218,6 +219,10 @@
     <ProjectReference Include="..\Domain.DataAccess\Domain.DataAccess.csproj">
       <Project>{61FA0E31-3398-4A3A-9BFB-300743FF4C5C}</Project>
       <Name>Domain.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{F39FBC2B-D9AC-4C95-A10D-C890A48AE964}</Project>
+      <Name>Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Migrations\Migrations.csproj">
       <Project>{2236B75C-9EC7-4486-9FA3-DB271380DE10}</Project>
