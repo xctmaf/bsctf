@@ -13,6 +13,7 @@
     using Web.Application.Handlers.User;
     using Web.Application.Models.User.Input;
 
+    [RoutePrefix("User")]
     public class UserController : ApiController
     {
         private readonly IUserHandler _handler;
@@ -23,13 +24,15 @@
             _handler = handler;
         }
 
-//        [HttpGet]
-//        public IHttpActionResult Info()
-//        {
-//            return Ok(_handler.GetInfo());
-//        }
+        [Authorize]
+        [HttpGet]
+        public IHttpActionResult Info()
+        {
+            return Ok(_handler.GetInfo());
+        }
 
         [HttpPost]
+        [Route("Login")]
         public IHttpActionResult Login([FromBody] LoginUserModel model)
         {
             if (model == null || ModelState.IsValid == false)
@@ -58,6 +61,7 @@
         }
 
         [HttpPost]
+        [Route("Register")]
         public IHttpActionResult Register([FromBody] RegisterUserModel model)
         {
             if (model == null || ModelState.IsValid == false)
