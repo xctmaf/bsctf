@@ -12,8 +12,9 @@ namespace BSCTF.IoC.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<IPasswordHasher>().ImplementedBy<PasswordHasher>().LifestyleSingleton(),
-                               Component.For<ISaltGenerator>().ImplementedBy<SaltGenerator>().LifestyleSingleton());
+            container.Register(Component.For<IPasswordHasher>().ImplementedBy<PasswordHasher>().LifestyleSingleton()
+                               , Component.For<ISaltGenerator>().ImplementedBy<SaltGenerator>().LifestyleSingleton()
+                               , Component.For<IFileService>().ImplementedBy<FileService>().LifestyleSingleton());
         }
     }
 }

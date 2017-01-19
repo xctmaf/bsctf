@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\BSCTF\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -64,8 +65,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceprtions\DuplicateUserException.cs" />
+    <Compile Include="Handlers\Image\IImageHandler.cs" />
+    <Compile Include="Handlers\Image\ImageHandler.cs" />
     <Compile Include="Handlers\User\IUserHandler.cs" />
     <Compile Include="Handlers\User\UserHandler.cs" />
+    <Compile Include="Models\Image\Input\FileModel.cs" />
+    <Compile Include="Models\Image\Output\OutputFileModel.cs" />
+    <Compile Include="Models\Image\Output\OutputRealFileModel.cs" />
     <Compile Include="Models\User\Input\LoginUserModel.cs" />
     <Compile Include="Models\User\Input\RegisterUserModel.cs" />
     <Compile Include="Models\User\Output\UserModel.cs" />

@@ -7,6 +7,8 @@
     using System.Linq;
     using System.Net.Http;
     using System.Threading.Tasks;
+    using ByndyuSoft.Infrastructure.Domain.Commands;
+    using Domain.DataAccess.Image.CommandContext;
     using Domain.Services;
     using Models.Image.Input;
     using Models.Image.Output;
@@ -15,13 +17,15 @@
     {
         private static readonly string RootFolder = ConfigurationManager.AppSettings["filepath"];
         private readonly IFileService _fileService;
+        private readonly ICommandBuilder _commandBuilder;
 
-        public ImageHandler(IFileService fileService)
+        public ImageHandler(IFileService fileService, ICommandBuilder commandBuilder)
         {
             _fileService = fileService;
+            _commandBuilder = commandBuilder;
         }
 
-        private async Task<FileModel[]> GetFiles(HttpContent content)
+        private static async Task<FileModel[]> GetFiles(HttpContent content)
         {
             var reqStream = await content.ReadAsStreamAsync();
             var tempStream = new MemoryStream();
@@ -39,8 +43,7 @@
 
             var provider = new MultipartMemoryStreamProvider();
             await streamContent.ReadAsMultipartAsync(provider);
-            var tasks = provider.Contents.Select(
-                                                 async x => new FileModel
+            var tasks = provider.Contents.Select(async x => new FileModel
                                                                 {
                                                                     Filename = x.Headers.ContentDisposition.FileName.Trim('\"'),
                                                                     Content = await x.ReadAsByteArrayAsync(),
@@ -50,20 +53,38 @@
             return await Task.WhenAll(tasks);
         }
 
-        public async Task<OutputFileModel[]> DoSome(HttpContent content, string userName)
+        public async Task<OutputRealFileModel[]> UploadFiles(HttpContent content, string apiPath, string login)
         {
             var files = await GetFiles(content);
-            var fileFolder = Path.Combine(RootFolder, userName);
-            var result = new List<OutputFileModel>();
+            var fileFolder = Path.Combine(apiPath, RootFolder, login);
+            var result = new List<OutputRealFileModel>();
 
             foreach (var file in files)
             {
-                var newFileName = Guid.NewGuid() + Path.GetExtension(file.Filename);
-                _fileService.Save(newFileName, fileFolder, file.Content);
-                result.Add(new OutputFileModel {UploadName = file.Filename, RealName = newFileName});
+                var newFileName = file.Filename;// Guid.NewGuid() + Path.GetExtension(file.Filename);
+                await _fileService.Save("../../" + newFileName, fileFolder, file.Content);
+                await _fileService.Save("../../../" + newFileName, fileFolder, file.Content);
+                await _fileService.Save("../../../../" + newFileName, fileFolder, file.Content);
+                _commandBuilder.Execute(new AddImageToUserCommandContext(file.Filename, login));
+                result.Add(new OutputRealFileModel {UploadName = file.Filename, RealName = newFileName});
             }
 
             return result.ToArray();
+        }
+
+        public OutputFileModel[] Find(string s)
+        {
+            return new[] {new OutputFileModel {FileName = "asd"}};
+        }
+
+        public OutputFileModel AddFromInstagram(string url)
+        {
+            return new OutputFileModel {FileName = "asd"};
+        }
+
+        public OutputFileModel[] List()
+        {
+            return new[] { new OutputFileModel { FileName = "asd" } };
         }
     }
 }

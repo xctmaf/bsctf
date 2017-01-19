@@ -1,7 +1,9 @@
 ﻿namespace Domain.Services
 {
+    using System.Threading.Tasks;
+
     public interface IFileService
     {
-        void Save(string fileName, string folder, byte[] content);
+        Task Save(string fileName, string folder, byte[] content);
     }
 }

@@ -6,6 +6,9 @@
 
     public interface IImageHandler
     {
-        Task<OutputFileModel[]> DoSome(HttpContent content);
+        Task<OutputRealFileModel[]> UploadFiles(HttpContent content, string apiPath, string login);
+        OutputFileModel[] Find(string s);
+        OutputFileModel AddFromInstagram(string url);
+        OutputFileModel[] List();
     }
 }
