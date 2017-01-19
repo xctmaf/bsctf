@@ -29,7 +29,7 @@ SELECT
 FROM
     Users
 WHERE
-    Login = '" + login +"'");
+    Login = @Login" , new {Login = login});
         }
     }
 }

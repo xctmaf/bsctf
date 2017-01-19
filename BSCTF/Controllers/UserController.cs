@@ -9,12 +9,13 @@
     using System.Web.Http;
     using System.Web.Security;
     using ByndyuSoft.Infrastructure.Common.Extensions;
+    using Newtonsoft.Json;
     using Web.Application.Exceprtions;
     using Web.Application.Handlers.User;
     using Web.Application.Models.User.Input;
 
     [RoutePrefix("User")]
-    public class UserController : ApiController
+    public class UserController : BaseController
     {
         private readonly IUserHandler _handler;
         
@@ -26,9 +27,10 @@
 
         [Authorize]
         [HttpGet]
+        [Route("Info")]
         public IHttpActionResult Info()
         {
-            return Ok(_handler.GetInfo());
+            return Ok(CurrentUser);
         }
 
         [HttpPost]
@@ -44,11 +46,8 @@
                 return Unauthorized();
 
 
-            var cryptedLogin = MachineKey.Protect(Encoding.UTF8.GetBytes(user.Login), WebConfigurationManager.AppSettings["cryptoKey"]).ToBase64();
-//            var cryptedCookieName = MachineKey.Protect(Encoding.UTF8.GetBytes("user"), WebConfigurationManager.AppSettings["cryptoKey"]).ToBase64();
-            //            Encoding.UTF8.GetString(MachineKey.Unprotect(Request.Cookies(cookieName).Value.FromBase64ToBytes, "an authentication token")
-
-            var cookie = new CookieHeaderValue("user", cryptedLogin)
+            var cryptedLogin = MachineKey.Protect(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(user)), WebConfigurationManager.AppSettings["cryptoKey"]).ToBase64();
+            var cookie = new CookieHeaderValue(WebConfigurationManager.AppSettings["AuthCookieName"], cryptedLogin)
                              {
                                  Expires = DateTimeOffset.Now.AddDays(1),
                                  Domain = Request.RequestUri.Host,

@@ -1,5 +1,6 @@
 ﻿namespace BSCTF
 {
+    using System;
     using System.Web.Http;
     using Castle.MicroKernel.Resolvers.SpecializedResolvers;
     using Castle.Windsor;
@@ -13,6 +14,8 @@
 
         protected void Application_Start()
         {
+            new AuthenticationModule().Init(this);
+
             GlobalConfiguration.Configure(WebApiConfig.Register);
             MigrationsRunner.Run();
             RegisterWindsor(GlobalConfiguration.Configuration);
@@ -25,6 +28,11 @@
 
             var dependencyResolver = new WindsorDependencyResolver(Container);
             configuration.DependencyResolver = dependencyResolver;
+        }
+
+        protected void Application_PostAuthenticateRequest(object sender, EventArgs e)
+        {
+            AuthenticationModule.OnAuthenticateRequest(sender, e);
         }
     }
 }
