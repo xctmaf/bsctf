@@ -4,6 +4,7 @@ namespace BSCTF.IoC.Installers
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
     using JetBrains.Annotations;
+    using Web.Application.Handlers.Image;
     using Web.Application.Handlers.User;
 
     [UsedImplicitly]
@@ -11,7 +12,8 @@ namespace BSCTF.IoC.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<IUserHandler>().ImplementedBy<UserHandler>());
+            container.Register(Component.For<IUserHandler>().ImplementedBy<UserHandler>()
+                               ,Component.For<IImageHandler>().ImplementedBy<ImageHandler>());
         }
     }
 }
