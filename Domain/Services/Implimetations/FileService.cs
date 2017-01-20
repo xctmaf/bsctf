@@ -10,7 +10,7 @@
         public async Task Save(string fileName, byte[] content)
         {
             var folder = Path.GetDirectoryName(fileName);
-            if (File.Exists(folder) == false)
+            if (Directory.Exists(folder) == false)
                 Directory.CreateDirectory(folder);
 
             using (var fileStream = File.Create(fileName))

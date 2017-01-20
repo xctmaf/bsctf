@@ -6,9 +6,9 @@
 
     public interface IImageHandler
     {
-        Task<OutputRealFileModel[]> UploadFiles(HttpContent content, string apiPath, string login);
-        OutputFileModel[] Find(string s);
-        Task<OutputFileModel> AddFromUrl(string apiPath, string login, string url);
-        OutputFileModel[] List();
+        Task<OutputFileModel[]> UploadFiles(HttpContent content, string apiPath, string login, string description);
+        OutputFileModel[] Find(string term);
+        Task<OutputFileModel[]> AddFromUrl(string apiPath, string login, string url);
+        OutputFileModel[] List(string login);
     }
 }

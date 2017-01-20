@@ -1,6 +1,7 @@
 ﻿namespace Domain.Services.Implimetations
 {
     using System;
+    using System.Globalization;
     using System.IO;
     using System.Net;
     using System.Text;
@@ -10,11 +11,12 @@
 
     public class InstagrammImageLoader : ImageLoaderBase
     {
-        private static readonly Regex ImgInfoRegex = new Regex(@"display_src"": ""(?<link>.+?)""");
+        private static readonly Regex ImgLinkRegex = new Regex(@"display_src"": ""(?<link>.+?)""");
+        private static readonly Regex ImgCaptionRegex = new Regex(@"caption"": ""(?<descript>.*?)""");
 
         public override bool IsAccept(string url)
         {
-            return url.StartsWith(@"https://www.instagram.com/p/") || url.StartsWith(@"http://www.instagram.com/p/");
+            return url.StartsWith(@"https://www.instagram.com/p/");
         }
 
         public override async Task<FileInfo> GetFile(string url)
@@ -33,14 +35,21 @@
 
             var html = await readStream.ReadToEndAsync();
 
-            var match = ImgInfoRegex.Match(html);
-            var descript = match.Groups["descript"].Value;
-            var imageContent = GetFileContent(match.Groups["link"].Value);
+            var descriptMatch = ImgCaptionRegex.Match(html);
+            var descript = descriptMatch.Success ? DecodeUtf(descriptMatch.Groups["descript"].Value) : string.Empty;
+            var imageContent = GetFileContent(ImgLinkRegex.Match(html).Groups["link"].Value);
 
             response.Close();
             readStream.Close();
 
             return new FileInfo {Content = imageContent, Description = descript, FileName = Guid.NewGuid() + ".jpg"};
+        }
+
+        private static string DecodeUtf(string value)
+        {
+            return Regex.Replace(value,
+                                 @"\\u(?<Value>[a-zA-Z0-9]{4})",
+                                 m => ((char) int.Parse(m.Groups["Value"].Value, NumberStyles.HexNumber)).ToString());
         }
     }
 }

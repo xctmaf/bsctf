@@ -15,7 +15,7 @@
 
         public ImageController(IImageHandler imageHandler)
         {
-            this._imageHandler = imageHandler;
+            _imageHandler = imageHandler;
         }
 
         [HttpPost]
@@ -25,7 +25,7 @@
         {
             if (this.Request.Content.IsMimeMultipartContent() == false)
                 return StatusCode(HttpStatusCode.UnsupportedMediaType);
-            return Ok(await _imageHandler.UploadFiles(Request.Content, HttpContext.Current.Server.MapPath("~/"), CurrentUser.Login));
+            return Ok(await _imageHandler.UploadFiles(Request.Content, HttpContext.Current.Server.MapPath("~/"), CurrentUser.Login, string.Empty));
         }
 
         [HttpGet]
@@ -61,7 +61,7 @@
         [Route("List")]
         public IHttpActionResult List()
         {
-            return Ok(_imageHandler.List());
+            return Ok(_imageHandler.List(CurrentUser.Login));
         }
     }
 }

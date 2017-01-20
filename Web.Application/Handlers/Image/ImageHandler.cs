@@ -7,43 +7,54 @@
     using System.Linq;
     using System.Net.Http;
     using System.Threading.Tasks;
+    using ByndyuSoft.Infrastructure.Domain;
     using ByndyuSoft.Infrastructure.Domain.Commands;
     using Domain.DataAccess.Image.CommandContexts;
+    using Domain.DataAccess.Image.QueryContexts;
+    using Domain.Entities;
     using Domain.Services;
     using Exceprtions;
     using Models.Image.Input;
     using Models.Image.Output;
+    using FileInfo = Domain.ValueObject.FileInfo;
 
     public class ImageHandler : IImageHandler
     {
         private static readonly string RootFolder = ConfigurationManager.AppSettings["filepath"];
         private readonly ICommandBuilder _commandBuilder;
+        private readonly IQueryBuilder _queryBuilder;
         private readonly IFileService _fileService;
         private readonly IEnumerable<IImageLoader> _imageLoaders;
 
-        public ImageHandler(IFileService fileService, ICommandBuilder commandBuilder, IEnumerable<IImageLoader> imageLoaders)
+        public ImageHandler(IFileService fileService, ICommandBuilder commandBuilder, IEnumerable<IImageLoader> imageLoaders, IQueryBuilder queryBuilder)
         {
             _fileService = fileService;
             _commandBuilder = commandBuilder;
             _imageLoaders = imageLoaders;
+            _queryBuilder = queryBuilder;
         }
 
-        public async Task<OutputRealFileModel[]> UploadFiles(HttpContent content, string apiPath, string login)
+        public async Task<OutputFileModel[]> UploadFiles(HttpContent content, string apiPath, string login, string description)
         {
             var files = await GetFiles(content);
             var fileFolder = GetFileFolder(apiPath, login);
-            var result = new List<OutputRealFileModel>();
+            var result = new List<OutputFileModel>();
 
             foreach (var file in files)
             {
                 var newFileName = GetNewFileName(file.Filename);
                 var filePath = Path.Combine(fileFolder, newFileName);
-                await _fileService.Save(filePath, file.Content);
-                _commandBuilder.Execute(new AddImageToUserCommandContext(file.Filename, filePath, login));
-                result.Add(new OutputRealFileModel {UploadName = file.Filename, RealName = newFileName});
+                await SaveFile(login, filePath, file.Filename, description, file.Content);
+                result.Add(new OutputFileModel { FileName = file.Filename, FilePath = filePath , Description = description });
             }
 
             return result.ToArray();
+        }
+
+        private async Task SaveFile(string login, string filePath, string fileName, string descript, byte[] content)
+        {
+            await _fileService.Save(filePath, content);
+            _commandBuilder.Execute(new AddImageToUserCommandContext(fileName, filePath, login, descript));
         }
 
         private static string GetNewFileName(string oldFileName)
@@ -53,17 +64,17 @@
                    + Path.GetExtension(oldFileName);
         }
 
-        public OutputFileModel[] Find(string s)
+        public OutputFileModel[] Find(string term)
         {
-            return new[] {new OutputFileModel {FileName = "asd"}};
+            return _queryBuilder.For<UserFile[]>().With(new FindImagesByDescription(term)).Select(x => new OutputFileModel { FileName = x.FileName, Description = x.Description, FilePath = x.FilePath }).ToArray();
         }
 
-        public OutputFileModel[] List()
+        public OutputFileModel[] List(string login)
         {
-            return new[] {new OutputFileModel {FileName = "asd"}};
+            return _queryBuilder.For<UserFile[]>().With(new FindImagesByUserLogin(login)).Select(x => new OutputFileModel {FileName = x.FileName, Description = x.Description, FilePath = x.FilePath}).ToArray();
         }
 
-        public async Task<OutputFileModel> AddFromUrl(string apiPath, string login, string url)
+        public async Task<OutputFileModel[]> AddFromUrl(string apiPath, string login, string url)
         {
             var allImageLoaders = _imageLoaders.Where(x => x.IsAccept(url)).ToArray();
 
@@ -77,9 +88,11 @@
                 throw new IncorrectUrlException();
 
             var newFileName = GetNewFileName(image.FileName);
-            await _fileService.Save(Path.Combine(GetFileFolder(apiPath, login), newFileName), image.Content);
+            var filePath = Path.Combine(GetFileFolder(apiPath, login), newFileName);
+            await SaveFile(login, filePath, image.FileName, image.Description, image.Content);
 
-            return new OutputFileModel {FileName = newFileName};
+            //просто фронтендеры очень любят одинаковые форматы, и чтобы не обижать Иделюшку мы отадем это...
+            return new [] { new OutputFileModel {FileName = newFileName, FilePath = filePath, Description = image.Description}};
         }
 
         private static async Task<FileModel[]> GetFiles(HttpContent content)

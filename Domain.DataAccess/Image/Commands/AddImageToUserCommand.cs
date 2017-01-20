@@ -17,7 +17,7 @@
         protected override void Process(AddImageToUserCommandContext context)
         {
             var user = Connection.Query<User>(SelectUser.ByLogin(context.Login)).Single();
-            Connection.Execute(InsertImage.New(context.FileName, context.FilePath, user.Id));
+            Connection.Execute(InsertImage.New(context.FileName, context.FilePath, user.Id, context.Descript));
         }
     }
 }
