@@ -64,6 +64,7 @@
     <Compile Include="CommandBase.cs" />
     <Compile Include="Image\CommandContexts\AddImageToUserCommandContext.cs" />
     <Compile Include="Image\Commands\AddImageToUserCommand.cs" />
+    <Compile Include="Image\Queries\FindImagesByDescriptionQuery.cs" />
     <Compile Include="Image\Queries\FindImagesByUserLoginQuery.cs" />
     <Compile Include="Image\QueryContexts\FindImagesByDescription.cs" />
     <Compile Include="Image\QueryContexts\FindImagesByUserLogin.cs" />
