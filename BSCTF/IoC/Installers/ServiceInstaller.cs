@@ -14,6 +14,7 @@ namespace BSCTF.IoC.Installers
         {
             container.Register(Component.For<IPasswordHasher>().ImplementedBy<PasswordHasher>().LifestyleSingleton()
                                , Component.For<ISaltGenerator>().ImplementedBy<SaltGenerator>().LifestyleSingleton()
+                               , Component.For<IImageLoader>().ImplementedBy<InstagrammImageLoader>().LifestyleSingleton()
                                , Component.For<IFileService>().ImplementedBy<FileService>().LifestyleSingleton());
         }
     }

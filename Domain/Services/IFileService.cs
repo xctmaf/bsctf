@@ -4,6 +4,6 @@
 
     public interface IFileService
     {
-        Task Save(string fileName, string folder, byte[] content);
+        Task Save(string fileName, byte[] content);
     }
 }

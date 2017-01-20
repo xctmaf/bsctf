@@ -65,6 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceprtions\DuplicateUserException.cs" />
+    <Compile Include="Exceprtions\IncorrectUrlException.cs" />
+    <Compile Include="Exceprtions\UnsupportedUrlException.cs" />
     <Compile Include="Handlers\Image\IImageHandler.cs" />
     <Compile Include="Handlers\Image\ImageHandler.cs" />
     <Compile Include="Handlers\User\IUserHandler.cs" />

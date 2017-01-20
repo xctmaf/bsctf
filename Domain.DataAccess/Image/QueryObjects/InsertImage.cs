@@ -4,9 +4,9 @@
 
     public static class InsertImage
     {
-        public static QueryObject New(string filename, int userId)
+        public static QueryObject New(string filename, string filePath, int userId)
         {
-            return new QueryObject(@"INSERT INTO Images (filename, userid) VALUES(@Filename, @UserId)", new { Filename = filename, UserId = userId});
+            return new QueryObject(@"INSERT INTO Images (filename, filepath, userid) VALUES(@FileName,  @FilePath, @UserId)", new { Filename = filename, UserId = userId, FilePath = filePath });
         }
     }
 }

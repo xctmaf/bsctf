@@ -7,12 +7,13 @@
     [UsedImplicitly]
     public class FileService : IFileService
     {
-        public async Task Save(string fileName, string folder, byte[] content)
+        public async Task Save(string fileName, byte[] content)
         {
+            var folder = Path.GetDirectoryName(fileName);
             if (File.Exists(folder) == false)
                 Directory.CreateDirectory(folder);
 
-            using (var fileStream = File.Create(Path.Combine(folder, fileName)))
+            using (var fileStream = File.Create(fileName))
                 await fileStream.WriteAsync(content, 0, content.Length);
         }
     }

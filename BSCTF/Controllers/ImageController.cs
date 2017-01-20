@@ -1,10 +1,11 @@
-namespace BSCTF.Controllers
+﻿namespace BSCTF.Controllers
 {
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Http;
+    using Web.Application.Exceprtions;
     using Web.Application.Handlers.Image;
 
     [RoutePrefix("Image")]
@@ -36,10 +37,23 @@ namespace BSCTF.Controllers
 
         [HttpPost]
         [Authorize]
-        [Route("AddFromInstagram")]
-        public IHttpActionResult AddFromInstagram(string url)
+        [Route("AddFromUrl")]
+        public async Task<IHttpActionResult> AddFromUrl([FromBody]string url)
         {
-            return Ok(_imageHandler.AddFromInstagram(url));
+            try
+            {
+                var result = await _imageHandler.AddFromUrl(HttpContext.Current.Server.MapPath("~/"), CurrentUser.Login, url);
+                return Ok(result);
+            }
+            catch (UnsupportedUrlException)
+            {
+                return BadRequest("Некорректная ссылка");
+            }
+            catch (IncorrectUrlException)
+            {
+                return BadRequest("Некорректная ссылка");
+            }
+
         }
 
         [HttpGet]
